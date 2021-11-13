@@ -1,3 +1,4 @@
+import { Button } from '@chakra-ui/react'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
@@ -13,6 +14,9 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>NextAuth.js spike</h1>
+        <Button colorScheme="blue" mt={4}>
+          Iniciar sesión
+        </Button>
       </main>
 
       <footer className={styles.footer}>
