@@ -8,11 +8,8 @@ import styles from '../styles/Home.module.css'
 export default function Home() {
   const [session, loading] = useSession()
 
-  if (loading) {
-    return <div>Loading...</div>
-  }
-
   function renderAuthControls() {
+    if (loading) return <Button isLoading colorScheme="blue" mt={4}></Button>
     if (session) {
       return (
         <Button onClick={() => signOut('google')} colorScheme="blue" mt={4}>
@@ -39,6 +36,7 @@ export default function Home() {
       <main className={styles.main}>
         <h1 className={styles.title}>NextAuth.js spike</h1>
         <div>{renderAuthControls()}</div>
+        {session && `${session.user.name} (${session.user.email})`}
       </main>
 
       <footer className={styles.footer}>
