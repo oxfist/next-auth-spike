@@ -1,9 +1,10 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { signIn, signOut, useSession } from 'next-auth/client'
+import { signOut, useSession } from 'next-auth/client'
 import { Button } from '@chakra-ui/react'
 
 import styles from '../styles/Home.module.css'
+import GoogleButton from '../components/googleButton'
 
 export default function Home() {
   const [session, loading] = useSession()
@@ -22,11 +23,7 @@ export default function Home() {
         </Button>
       )
     } else {
-      return (
-        <Button onClick={() => signIn('google')} colorScheme="blue" mt={4}>
-          Iniciar sesión
-        </Button>
-      )
+      return <GoogleButton />
     }
   }
 
