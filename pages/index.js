@@ -9,7 +9,12 @@ export default function Home() {
   const [session, loading] = useSession()
 
   function renderAuthControls() {
-    if (loading) return <Button isLoading colorScheme="blue" mt={4}></Button>
+    if (loading)
+      return (
+        <Button isLoading colorScheme="blue" mt={4}>
+          Iniciar sesión
+        </Button>
+      )
     if (session) {
       return (
         <Button onClick={() => signOut('google')} colorScheme="blue" mt={4}>
