@@ -1,9 +1,33 @@
-import { Button } from '@chakra-ui/react'
 import Head from 'next/head'
 import Image from 'next/image'
+import { signIn, signOut, useSession } from 'next-auth/client'
+import { Button } from '@chakra-ui/react'
+
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
+  const [session, loading] = useSession()
+
+  if (loading) {
+    return <div>Loading...</div>
+  }
+
+  function renderAuthControls() {
+    if (session) {
+      return (
+        <Button onClick={() => signOut('google')} colorScheme="blue" mt={4}>
+          Cerrar sesión
+        </Button>
+      )
+    } else {
+      return (
+        <Button onClick={() => signIn('google')} colorScheme="blue" mt={4}>
+          Iniciar sesión
+        </Button>
+      )
+    }
+  }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -14,9 +38,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>NextAuth.js spike</h1>
-        <Button colorScheme="blue" mt={4}>
-          Iniciar sesión
-        </Button>
+        <div>{renderAuthControls()}</div>
       </main>
 
       <footer className={styles.footer}>
